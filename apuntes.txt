@@ -458,3 +458,10 @@ const Component = () => {
   return <div>{name}div>;
 }
 No olvides importar las funciones de los hooks desde la librería de React. También puedes usarlos de esta forma: React.useNombreDelHook.
+
+Custom Hooks
+React nos permite crear nuestros propios Hooks. Solo debemos seguir algunas convenciones:
+
+Los hooks siempre deben empezar con la palabra use: useAPI, useMovies, useWhatever.
+Si nuestro custom hook nos permite consumir/interactuar con dos elementos (por ejemplo, title y setTitle), nuestro hook debe devolver un array.
+Si nuestro custom hook nos permite consumir/interactuar con tres o más elementos (por ejemplo, name, setName, lastName, setLastName, etc.), nuestro hook debe devolver un objeto.
