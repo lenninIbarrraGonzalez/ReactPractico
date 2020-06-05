@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/components/App.scss';
+import '../assets/styles/App.scss';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
