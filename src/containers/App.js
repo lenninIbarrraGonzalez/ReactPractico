@@ -10,7 +10,11 @@ import Footer from '../components/Footer';
 const App = () => {
   //videos nombre de la variable para guardar el estado
   //setVideos permit actualizar el estado
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState({
+    'mylist': [],
+    'trends': [],
+    'original': [],
+  });
   //permite ir a al api y traer la información y actualizar la información de la variable videos
   useEffect(() => {
     fetch('http://localhost:3000/initialState')
@@ -23,30 +27,17 @@ const App = () => {
     <div className='App'>
       <Header />
       <Search />
-
-      <Categories title='Mi lista'>
-        <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-        </Carousel>
-      </Categories>
+      {videos.mylist.length > 0 && (
+        <Categories title='Mi lista'>
+          <Carousel>
+            <CarouselItem />
+          </Carousel>
+        </Categories>
+      )}
 
       <Categories title='Tendencias'>
         <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
-        </Carousel>
-      </Categories>
-
-      <Categories title='Originales de platzi video'>
-        <Carousel>
-          <CarouselItem />
-          <CarouselItem />
-          <CarouselItem />
+          {videos.trends.map((item) => <CarouselItem key={item.id} {...item} />)}
         </Carousel>
       </Categories>
 
