@@ -222,6 +222,10 @@ class Button extends React.Component {
 }
 Recuerda que los nombres de estos eventos deben seguir la nomenclatura camelCase: primera palabra en minúsculas, iniciales de las siguientes palabras en mayúsculas y el resto también en minúsculas."
 
+
+******************************************
+Iniciando el proyecto
+****************************************
 Instalación y configuración de entorno
 Iniciar un repositorio en GIT:
 
@@ -305,6 +309,65 @@ Script para ejecutar las tareas de Webpack (package.json):
   },
 }
 
+**************
+// Requerimos el modulo de path el Html plugin que isntalamos
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+// Creamos un nuevo modulo que vamos a exportar con esta configuracion
+// Vamos a configurar cada unos de los elementos que necesitamos
+
+module.exports = {
+  // Iniciando por la entrada del proyecto
+  // Haciendo referencia al archivo principal
+
+  entry: "./src/index.js",
+  // En este output, es donde vamos a guardar los archivos resultantes cuando hagamos la configuracion
+  output: {
+    // La instancia resolve nos ayuda a detectar el directorio donde nos encontramos y el directorio donde vamos a guardar los archivos compilados
+    path: path.resolve(__dirname, "dist"),
+    // Filename nos pode un nombre al archivo compilado
+    filename: "bundle.js"
+  },
+  // Este elemento resulve las extensiones que vamos a utilizar
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
+  // Modulo con las reglas necesarias
+  module: {
+    rules: [
+      {
+        // Regla principal
+        // Identificacion de los archivos con una expresion regular
+        test: /\.(js|jsx)$/,
+        // Exclusion de carpetas
+        exclude: /node_modules/,
+        // Utilizamos el loader de babel instalado
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        // Regla para trabajar con los archivos html
+        test: /\.html$/,
+        // Utilizamos el loader de babel instalado
+        use: {
+          loader: "html-loader"
+        }
+      }
+    ]
+  },
+  // Se añaden los plugins que necesitamos
+  plugins: [
+  // pasamo un objeto con la configuracion que necesitamos
+    
+    new HtmlWebpackPlugin({
+      //Donde esta ubicado el template que tenemos
+      template: "./public/index.html",
+      filename: "./index.html"
+    })
+  ]
+};
 
 ************
 Webpack Dev Server: Reporte de errores y Cambios en tiempo real
@@ -319,6 +382,16 @@ Script para ejecutar el servidor de Webpack y visualizar los cambios en tiempo r
     ""start"": ""webpack-dev-server --open --mode development""
   },
 }
+
+
+
+Si agregas --host 0.0.0.0 (sustituye 0.0.0.0 por tu dirección IP que puedes ver en la configuración de tu red) al script start, puedes acceder desde otros dispositivos al proyecto. Por ejemplo:
+
+"start": "webpack-dev-server --open --mode development --host 192.168.1.101"
+
+Ahora al ejecutar npm run start tu proyecto se puede visualizar desde otros dispositivos conectados a tu red con la dirección IP. Por ejemplo:
+
+http://192.168.1.101:8080/
 
 
 ************
@@ -407,7 +480,8 @@ export default Component;
 *********************
 
 Creando una Fake API
-Vamos a usar JSON Server para crear una Fake API: una API ““falsa”” construida a partir de un archivo JSON que nos permite preparar nuestro código para consumir una API de verdad en el futuro.
+Vamos a usar JSON Server para crear una Fake API: una API ““falsa”” construida a partir de un archivo JSON que nos permite preparar nuestro código para consumir
+una API de verdad en el futuro.
 
 Instalación de JSON Server:
 
@@ -465,3 +539,38 @@ React nos permite crear nuestros propios Hooks. Solo debemos seguir algunas conv
 Los hooks siempre deben empezar con la palabra use: useAPI, useMovies, useWhatever.
 Si nuestro custom hook nos permite consumir/interactuar con dos elementos (por ejemplo, title y setTitle), nuestro hook debe devolver un array.
 Si nuestro custom hook nos permite consumir/interactuar con tres o más elementos (por ejemplo, name, setName, lastName, setLastName, etc.), nuestro hook debe devolver un objeto.
+
+
+PropTypes
+Los PropTypes son una propiedad de nuestros componentes que nos permiten especificar qué tipo de elementos son nuestras props: arrays, strings, números, etc.
+
+Instalación de PropTypes:
+
+npm install --save prop-types
+Uso de PropTypes:
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Component = ({ name, lastName, age, list }) => {
+  // ...
+};
+
+Component.propTypes = {
+  name: PropTypes.string,
+  lastName: PropTypes.string,
+  age: PropTypes.number,
+  list: PropTypes.array,
+};
+
+export default Component;
+Por defecto, enviar todas nuestras props es opcional, pero con los propTypes podemos especificar cuáles props son obligatorias para que nuestro componente funcione correctamente con el atributo isRequired.
+
+Component.propTypes = {
+  name: PropTypes.string.isRequired, // obligatorio
+  lastName: PropTypes.string.isRequired, // obligatorio
+  age: PropTypes.number, // opcional,
+  list: PropTypes.array, // opcional
+};
+
+
