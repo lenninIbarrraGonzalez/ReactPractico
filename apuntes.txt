@@ -495,6 +495,8 @@ Ejecutar el servidor de JSON Server:
 ```bash
 json-server archivoParaTuAPI.json
 
+http://localhost:3000/initialState
+
 ************************************
 Los React Hooks son una característica de React que tenemos disponible a partir de la versión 16.8. Nos permiten agregar estado y ciclo de vida a nuestros componentes creados como funciones.
 
