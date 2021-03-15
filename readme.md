@@ -20,8 +20,8 @@ _npm install_
 
 ## Despliegue 📦
 
-_Ejecuta npx json-server initialState.json_
-_Luego ejecuta npm start_
+* Ejecuta npx json-server initialState.json
+- Luego ejecuta npm start
 
 ## Construido con 🛠️
 
@@ -35,6 +35,8 @@ _Luego ejecuta npm start_
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](https://wikis.fdi.ucm.es/ELP/Licencia_MIT) para detalles
+
+![alt text](https://github.com/lenninIbarrraGonzalez/reactPractico/blob/master/imagen.png)
 
 
 
