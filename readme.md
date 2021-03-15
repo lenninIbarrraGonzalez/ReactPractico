@@ -20,7 +20,7 @@ _npm install_
 
 ## Despliegue 📦
 
-_Ejecuta json-server initialState.json_
+_Ejecuta npx json-server initialState.json_
 _Luego ejecuta npm start_
 
 ## Construido con 🛠️
